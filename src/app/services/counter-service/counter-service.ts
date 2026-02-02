@@ -7,39 +7,46 @@ import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 export class CounterService {
 
 
-  interval?:number;
+  interval:number | null = null;
 
   ///count = 0;
 
   //count = signal(0);
   count: WritableSignal<number> = signal(0);
 
-
+  counterState: WritableSignal<string> = signal('not counting');
+  
   doubleCount = computed(() => this.count() * 2);
 
   start(){
-    this.interval = setInterval(() => {
-      this.increment()
-    }, 1000);
+
+    if(this.interval === null){
+      this.interval = setInterval(() => {
+        this.increment()
+      }, 1000);
+    }
+
   }
 
   stop(){
-    clearInterval(this.interval);
+
+    if (this.interval !== null) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+    
   }
 
   increment(){
     this.count.update((oldValue) => oldValue + 1)
-    console.log(this.count());
   }
 
   decrement(){
     this.count.update((old) => old - 1);
-    console.log(this.count())
   }
 
   reset(){
     this.count.set(0)
-    console.log(this.count())
   }
 
 
