@@ -1,3 +1,4 @@
+<app-order-component (orderByAgePressed)="orderByAge()" (orderByNamePressed)="orderByName($event)"></app-order-component>
 <div>
     @for (student of studentServ.students(); track $index) {
         <div>
