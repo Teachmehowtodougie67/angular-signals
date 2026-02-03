@@ -21,6 +21,7 @@ export class CounterService {
   start(){
 
     if(this.interval === null){
+      this.counterState.set('counting')
       this.interval = setInterval(() => {
         this.increment()
       }, 1000);
@@ -31,6 +32,7 @@ export class CounterService {
   stop(){
 
     if (this.interval !== null) {
+      this.counterState.set('not counting')
       clearInterval(this.interval);
       this.interval = null;
     }

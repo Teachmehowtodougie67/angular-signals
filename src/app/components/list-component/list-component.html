@@ -1,0 +1,8 @@
+<div>
+    @for (student of studentServ.students(); track $index) {
+        <div>
+            <span>{{student.name}}</span>
+            <span>{{student.age}}</span>
+        </div>
+    }
+</div>

@@ -14,15 +14,11 @@ export class FlagComponent {
 
   emotionServ = inject(EmotionService);
 
-  state = signal('')
+  state = signal('ng')
 
   constructor(){
     effect(()=> {
-      console.log("flag", this.counter.count())
-
-      console.log("flag 2", this.emotionServ.emotion())
-
-      this.state.set("I'm " + this.emotionServ.emotion() + " and I'm counting " + this.counter.count())
+      this.state.set("I'm " + this.emotionServ.emotion() + " and I'm " + this.counter.counterState())
     })
   }
 
